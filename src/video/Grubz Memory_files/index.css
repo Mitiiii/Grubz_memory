@@ -1,0 +1,194 @@
+* {
+	margin: 0; /* pas de marge externe */
+	padding: 0; /* pas de marge interne */
+	box-sizing: border-box; /* pas de déformation si marge interne */
+}
+
+body {
+	width: 100vw; /* largeur totale de l'écran */
+	height: 100vh; /* hauteur totale de l'écran */
+	padding: 15px; /* marge interne */
+	overflow: hidden; /* pas de scroll */
+	/**/
+	display: grid; /* faire une grille */
+	grid-template-columns: 200px 1fr 250px; /* 3 colonnes */
+	grid-template-rows: 1fr; /* 1 ligne */
+	gap: 15px; /* goutière */
+}
+
+header {
+	justify-self: center; /* se centrer dans la case de la grille */
+	/**/
+	display: flex; /* éléments enfant côte à côte */
+	justify-content: center; /* et centrés */
+	gap: 25px; /* goutière */
+	background-color: rgb(6, 215, 215);
+}
+
+.card-info {
+	padding: 4px 8px 1px 8px; /* marge interne (haut, droite, bas, gauche) */
+	/**/
+	font-size: 2vw; /* taille de typo */
+	font-weight: bold; /* graisse de la typo */
+	font-style: italic; /* mettre en italique */
+}
+
+main {
+	justify-self: center; /* centrer dans la case */
+	align-self: center; /* centrer verticalement dans la case */
+	/**/
+	display: grid; /* faire une grille */
+	grid-template-columns: repeat(4, auto); /* 4 colonnes */
+	grid-template-rows: repeat(4, auto); /* 4 lignes */
+	gap: 10px; /* goutière */
+	background-color: rgb(236, 173, 96);
+}
+
+.card {
+	width: 10vw; /* largeur */
+	aspect-ratio: 1; /* ratio d'aspect (basée sur la largeur) */
+	/**/
+	perspective: 1000px; /* effet de perspective */
+	/**/
+	cursor: pointer; /* changer le curseur */
+	/**/
+	transition: transform 250ms; /* animation de changement des propriétés */
+}
+
+.card:hover {
+	transform-origin: center; /* point de pivot centré */
+	transform: scale(105%) translateY(-15px) rotate(2deg); /* triple transformation : échelle, translation en Y et rotation */
+	z-index: 99; /* metre au dessus des autres éléments */
+}
+
+.card-wrapper {
+	position: relative; /* devient un point de repère */
+	width: 100%; /* largeur */
+	height: 100%; /* hauteur */
+	/**/
+	transition: transform 0.8s; /* animation de changement des propriétés */
+	transform-style: preserve-3d; /* garder l'effet de 3D en animation */
+}
+.card.returned {
+	user-select: none; /* pas sélectionnable */
+	pointer-events: none; /* pas cliquable */
+}
+.card.returned .card-wrapper {
+	transform: rotateY(180deg); /* transformation de rotation */
+}
+
+.card-back,
+.card-front {
+	position: absolute; /* se place par rapport à un point de repère */
+	width: 100%; /* largeur */
+	height: 100%; /* hauteur */
+	-webkit-backface-visibility: hidden; /* Safari */
+	backface-visibility: hidden; /* envers invisible (comme en 3D) */
+	/**/
+	border: 2px solid black; /* bordure en trait continu de couleur noire */
+	border-radius: 15px; /* bord arrondi */
+	overflow: hidden; /* masquer le scroll */
+}
+.card-front {
+	transform: rotateY(180deg); /* roation sur un axe spécifique */
+}
+
+.card img {
+	display: block;
+	width: 100%; /* largeur */
+	height: 100%; /* hauteur */
+}
+
+footer {
+	justify-self: center; /* centrer dans la case */
+	background-color: rgb(168, 105, 152);
+}
+
+button {
+	padding: 4px 8px; /* margin interne, haut/bas et gauche/droite */
+	text-transform: uppercase; /* texte en capitales */
+	border-radius: 15px; /* bord arrondi */
+	border: none; /* pas de bordure */
+	color: white; /* couleur du texte */
+	background-color: black; /* couleur de fond */
+	/**/
+	cursor: pointer; /* curseur */
+}
+
+#winpopup {
+	position: fixed; /* sortir du flex */
+	top: 50vh; /* position en Y */
+	left: 50vw; /* position en X */
+	transform: translate(-50%, -50%); /* ajustement de calage */
+	/**/
+	padding: 30px; /* margen interne */
+	background-color: white; /* couleur de fond */
+	border: 2px solid black; /* bordure */
+	border-radius: 10px; /* bordure arrondie */
+	/**/
+	text-align: center; /* texte centré */
+	font-size: 3vw; /* taille de la typo */
+	text-transform: uppercase; /* texte en capitales */
+	/**/
+	z-index: 100; /* passer au dessus de tout les autres éléments */
+}
+
+#winpopup.hidden {
+	display: none; /* ne pas afficher */
+}
+
+#winpopup video {
+	display: block; /* la vidéo est traitée comme une boite */
+	width: 200px;
+	height: 200px;
+	margin: 0 auto; /* centrer horizontalement */
+	clip-path: circle(45% at 50% 50%); /* masquage circulaire */
+	/**/
+	object-fit: cover; /* la vidéo occupe toute la boite (et est tronquée) */
+	object-position: center; /* la vidéo est centrée en X et Y dans la boite */
+}
+
+#winpopup em {
+	text-transform: none; /* texte pas en capitales */
+	font-size: 1.5vw; /* taille de la typo */
+}
+
+
+
+
+#bad {
+	position: fixed; /* sortir du flex */
+	top: 50vh; /* position en Y */
+	left: 50vw; /* position en X */
+	transform: translate(-50%, -50%); /* ajustement de calage */
+	/**/
+	padding: 5px; /* margen interne */
+	background-color: red; /* couleur de fond */
+	border: 2px solid black; /* bordure */
+	border-radius: 5px; /* bordure arrondie */
+	/**/
+	text-align: center; /* texte centré */
+	font-size: 3vw; /* taille de la typo */
+	text-transform: uppercase; /* texte en capitales */
+	/**/
+	z-index: 100; /* passer au dessus de tout les autres éléments */
+}
+
+#bad.hidden {
+	display: none; /* ne pas afficher */
+}
+
+#bad video {
+	display: block; /* la vidéo est traitée comme une boite */
+	width: 460px;
+	height: 200px;
+	margin: 0 auto; /* centrer horizontalement */
+	/**/
+	/*object-fit: cover; /* la vidéo occupe toute la boite (et est tronquée) */
+	object-position: center; /* la vidéo est centrée en X et Y dans la boite */
+}
+
+#BGM {
+	background-color: red; /* couleur de fond */
+
+}

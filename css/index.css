@@ -1,0 +1,405 @@
+/* font-family vidéo référence: https://www.youtube.com/watch?v=lDip-1VnaOA&t=8s */
+@font-face {
+	font-family: "Gaegu";
+	src: url(Gaegu-Light.ttf);
+}
+
+* {
+	margin: 0; /* pas de marge externe */
+	padding: 0; /* pas de marge interne */
+	box-sizing: border-box; /* pas de déformation si marge interne */
+}
+
+body {
+	width: 100vw; /* largeur totale de l'écran */
+	height: 100vh; /* hauteur totale de l'écran */
+	/*padding: 15px; /* marge interne */
+	overflow: hidden; /* pas de scroll */
+	/**/
+	display: grid; /* faire une grille */
+	grid-template-columns: 150px 1.9fr 1fr; /* 3 colonnes */
+	grid-template-rows: 1fr; /* 1 ligne */
+	gap: 15px; /* goutière */
+	background-color: rgb(173, 154, 83);
+}
+
+header {
+	/*justify-self: left; /* se centrer dans la case de la grille */
+	/**/
+	padding: 15px;
+	display: flex; /* éléments enfant côte à côte */
+	flex-direction: column;
+	/*justify-content: center; /* et centrés */
+	/*gap: 25px; /* goutière */
+	align-items: center;
+	background-color: rgb(231, 205, 111);
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 40px;
+	font-size: 32px;
+	font-family: Gaegu;
+	z-index: 100;
+	font-weight: bold;
+}
+
+button {
+	margin: 4% 0;
+	padding: 2px 8px 2px 8px;
+	/*width: 60px;*/
+	/*aspect-ratio: 1;*/
+	/*text-transform: uppercase; /* texte en capitales */
+	border: solid black;
+	border-width: 0.35dvb;
+	border-radius: 1.9dvb; /* bord arrondi */
+	color: rgb(0, 0, 0); /* couleur du texte */
+	background-color: rgb(238, 220, 154); /* couleur de fond */
+	font-family: Gaegu;
+	font-weight: bold;
+	font-size: 2.5vw;
+	/**/
+	cursor: pointer; /* curseur */
+}
+
+.menuBtn {
+	margin: 10% 0;
+	padding: 3px;
+	width: 60px;
+	aspect-ratio: 1;
+	/*text-transform: uppercase; /* texte en capitales */
+	border-radius: 10px; /* bord arrondi */
+	border: 3px solid black;
+	color: rgb(0, 0, 0); /* couleur du texte */
+	background-color: rgb(238, 220, 154); /* couleur de fond */
+	/**/
+	cursor: pointer; /* curseur */
+}
+
+main {
+	justify-self: right;
+	align-self: center; /* centrer verticalement dans la case */
+	/**/
+	display: grid; /* faire une grille */
+	grid-template-columns: repeat(4, auto); /* 4 colonnes */
+	grid-template-rows: repeat(4, auto); /* 4 lignes */
+	gap: 10px; /* goutière */
+	/*background-color: rgb(249, 174, 54);*/
+}
+
+.card {
+	width: 10vw; /* largeur */
+	aspect-ratio: 1; /* ratio d'aspect (basée sur la largeur) */
+	/**/
+	perspective: 1000px; /* effet de perspective */
+	/**/
+	cursor: pointer; /* changer le curseur */
+	/**/
+	transition: transform 250ms; /* animation de changement des propriétés */
+}
+
+.card:hover {
+	transform-origin: center; /* point de pivot centré */
+	transform: scale(105%) translateY(-15px) rotate(2deg); /* triple transformation : échelle, translation en Y et rotation */
+	z-index: 99; /* metre au dessus des autres éléments */
+}
+
+.card-wrapper {
+	position: relative; /* devient un point de repère */
+	width: 100%; /* largeur */
+	height: 100%; /* hauteur */
+	/**/
+	transition: transform 0.8s; /* animation de changement des propriétés */
+	transform-style: preserve-3d; /* garder l'effet de 3D en animation */
+}
+.card.returned {
+	user-select: none; /* pas sélectionnable */
+	pointer-events: none; /* pas cliquable */
+}
+.card.returned .card-wrapper {
+	transform: rotateY(180deg); /* transformation de rotation */
+}
+
+.card.pair {
+	transform-origin: center; /* point de pivot centré */
+	transform: scale(80%); /* translateY(-50px) rotate(3deg); /* triple transformation : échelle, translation en Y et rotation */
+	transform: scale(105%) translateY(-35px);/**/
+	z-index: 99; /* metre au dessus des autres éléments */
+}
+
+.card-back,
+.card-front {
+	position: absolute; /* se place par rapport à un point de repère */
+	width: 100%; /* largeur */
+	height: 100%; /* hauteur */
+	-webkit-backface-visibility: hidden; /* Safari */
+	backface-visibility: hidden; /* envers invisible (comme en 3D) */
+	/**/
+	border: solid rgb(0, 0, 0); /* bordure en trait continu de couleur noire */
+	border-width: 0.35dvb;
+	border-radius: 1.9dvb; /* bord arrondi */
+	background-color: rgb(242, 238, 193);
+	overflow: hidden; /* masquer le scroll */
+}
+
+.card-back {
+	background-color: rgb(231, 205, 111);
+}
+
+.card-front {
+	transform: rotateY(180deg); /* roation sur un axe spécifique */
+}
+
+.card.hidden {
+	visibility: hidden;
+}
+
+.card img {
+	display: block;
+	width: 100%; /* largeur */
+	height: 100%; /* hauteur */
+}
+
+footer {
+	/*justify-self: center; /* centrer dans la case */
+	/*background-color: rgb(249, 174, 54);*/
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 2vw;
+}
+
+.healthMontre {
+	display: flex;
+	margin-bottom: 7vh;
+}
+
+.healthBar {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(7, auto);
+}
+
+.croissantBox {
+	position: relative;
+	width: 5vw;
+	aspect-ratio: 1.15;
+}
+
+.croissant, .croissantOmbre {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+.croissant.hidden {
+	visibility: hidden;
+}
+
+#montre {
+	font-family: Gaegu;
+	font-weight: bold;
+	font-size: 2.4vw;
+	padding: 4px 8px 1px 8px;
+	align-self: center;
+	margin: 0 4vw;
+}
+
+.card-info {
+	padding: 4px 8px 1px 8px; /* marge interne (haut, droite, bas, gauche) */
+	/**/
+	font-family: Gaegu;
+	font-size: 2vw; /* taille de typo */
+	font-weight: bold; /* graisse de la typo */
+	/*font-style: italic; /* mettre en italique */
+	/*text-transform: uppercase;*/	
+}
+
+#startpopup {
+	width: 100vw;
+	height: 100vh;
+	position: fixed; /* sortir du flex */
+	/*left: 150px; /* position en X */
+	/**/
+	padding: 30px; /* marge interne */
+	/*background-color: rgb(255 255 255 / 1%); /* couleur de fond */
+	/*propriété trouvée sur MDN*/
+	backdrop-filter: blur(7px);
+	/*border: 2px solid black; /* bordure */
+	/*border-radius: 10px; /* bordure arrondie */
+	/**/
+	font-family: Gaegu;
+	font-size: 2.8vw; /* taille de la typo */
+	font-weight: bold;
+	text-align: center; /* texte centré */
+	text-transform: uppercase; /* texte en capitales */
+	/**/
+	z-index: 99; /* passer au dessus de tout les autres éléments */
+}
+
+#startpopup.hidden {
+	display: none; /* ne pas afficher */
+}
+
+#startWindow {
+	margin: 30vh 0;
+}
+
+.smolBlur {
+	width: stretch;
+	height: 100vh;
+	left: 150px;
+	position: fixed; /* sortir du flex */
+	/*left: 150px; /* position en X */
+	/**/
+	padding: 30px; /* marge interne */
+	/*background-color: rgb(255 255 255 / 1%); /* couleur de fond */
+	/*propriété trouvée sur MDN*/
+	backdrop-filter: blur(7px);
+	/*border: 2px solid black; /* bordure */
+	/*border-radius: 10px; /* bordure arrondie */
+	/**/
+	text-align: center; /* texte centré */
+	font-family: Gaegu;
+	font-size: 2vw; /* taille de la typo */
+	font-weight: bold;
+	/*text-transform: uppercase; /* texte en capitales */
+	/**/
+	z-index: 100; /* passer au dessus de tout les autres éléments */
+}
+
+span {
+	color: rgb(221, 2, 2);
+}
+
+#pausepopup.hidden {
+	display: none; /* ne pas afficher */
+}
+
+#pauseWindow {
+	margin-top: 10%;
+	font-size: 2.7vw;
+}
+
+#pauseWindow img {
+	display: block; /* la vidéo est traitée comme une boite */
+	width: 12vw;
+	margin: 1vh auto; /* centrer horizontalement */
+}
+
+#winpopup.hidden {
+	display: none; /* ne pas afficher */
+}
+
+#winWindow {
+	/*position: fixed; /* sortir du flex */
+	/*top: 50vh; /* position en Y */
+	/*left: 50vw; /* position en X */
+	/*transform: translate(-50%, -50%); /* ajustement de calage */
+	/**/
+	padding: 4dvb 0; /* margen interne */
+	margin: 3% 18%;
+	background-color:  rgb(238, 220, 154); /* couleur de fond */
+	border: solid black;
+	border-width: 0.35dvb;
+	border-radius: 1.9dvb;
+	/**/
+	text-align: center; /* texte centré */
+	/*font-size: 2.5vw; /* taille de la typo */
+	/*text-transform: uppercase; /* texte en capitales */
+	/**/
+	/*z-index: 100; /* passer au dessus de tout les autres éléments */
+}
+
+#winWindow img {
+	display: block; /* la vidéo est traitée comme une boite */
+	width: 12vw;
+	margin: 3vh auto 0 auto; /* centrer horizontalement */
+}
+
+/*ENLEVER*/
+#winWindow video {
+	display: block; /* la vidéo est traitée comme une boite */
+	width: 200px;
+	height: 200px;
+	margin: 0 auto; /* centrer horizontalement */
+	clip-path: circle(45% at 50% 50%); /* masquage circulaire */
+	/**/
+	object-fit: cover; /* la vidéo occupe toute la boite (et est tronquée) */
+	object-position: center; /* la vidéo est centrée en X et Y dans la boite */
+}
+/*ENLEVER*/
+
+#loosepopup.hidden {
+	display: none; /* ne pas afficher */
+}
+
+#looseWindow {
+	/*position: fixed; /* sortir du flex */
+	/*top: 50vh; /* position en Y */
+	/*left: 50vw; /* position en X */
+	/*transform: translate(-50%, -50%); /* ajustement de calage */
+	/**/
+	padding: 4dvb; /* margen interne */
+	margin: 3% 22%;
+	background-color:  rgb(238, 220, 154); /* couleur de fond */
+	border: solid black;
+	border-width: 0.35dvb;
+	border-radius: 1.9dvb;
+	/**/
+	text-align: center; /* texte centré */
+	/*font-size: 2.5vw; /* taille de la typo */
+	/*text-transform: uppercase; /* texte en capitales */
+	/**/
+	/*z-index: 100; /* passer au dessus de tout les autres éléments */
+}
+
+#looseWindow img {
+	display: block; /* la vidéo est traitée comme une boite */
+	width: 12vw;
+	margin: 3vh auto 0 auto; /* centrer horizontalement */
+}
+
+
+
+
+
+
+
+#bad {
+	position: fixed; /* sortir du flex */
+	top: 50vh; /* position en Y */
+	left: 50vw; /* position en X */
+	transform: translate(-50%, -50%); /* ajustement de calage */
+	/**/
+	padding: 5px; /* margen interne */
+	background-color: red; /* couleur de fond */
+	border: 2px solid black; /* bordure */
+	border-radius: 5px; /* bordure arrondie */
+	/**/
+	text-align: center; /* texte centré */
+	font-size: 3vw; /* taille de la typo */
+	text-transform: uppercase; /* texte en capitales */
+	/**/
+	z-index: 100; /* passer au dessus de tout les autres éléments */
+}
+
+#bad.hidden {
+	display: none; /* ne pas afficher */
+}
+
+#bad video {
+	display: block; /* la vidéo est traitée comme une boite */
+	width: 460px;
+	height: 200px;
+	margin: 0 auto; /* centrer horizontalement */
+	/**/
+	/*object-fit: cover; /* la vidéo occupe toute la boite (et est tronquée) */
+	object-position: center; /* la vidéo est centrée en X et Y dans la boite */
+}
+
+#BGM {
+	background-color: red; /* couleur de fond */
+
+}
