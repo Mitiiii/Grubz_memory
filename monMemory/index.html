@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- titre -->
+	<title>Grubz Memory</title>
+	<meta name="description" content="Jeu de Memory" />
+	<!-- icones du site (voir l'onglet du site) -->
+	<link rel="apple-touch-icon" href="grubzIcon.png" />
+	<link rel="icon" href="grubzIcon.ico" />
+	<!-- styles -->
+	<link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+	<!--
+		Jeu de mémory
+		trouver toutes les paires de carte pour gagner
+		
+		Éléments du code
+		• retournement animé des cartes
+		• son déclenché au clic sur une carte
+		• son déclenché si bonne paire ou si mauvaise paire
+		• fonction pour mélanger aléatoirement les cartes
+		• afficher d'un carton spécial quand une partie se termine
+		• compteur de nombre de coup joués dans une partie
+		• bouton pour rejouer
+		-->
+
+	<!-- infos des cartes -->
+	<header>
+		<audio id="BGM" loop src="src/sound/GRUBZSONG.mp3"></audio>
+		<h1>GRUBZ'S MEMORY</h1>
+		<img src="src/img/reloadBtn.png" alt="" class="menuBtn" id="reload" />
+		<img src="src/img/pauseBtn.png" alt="" class="menuBtn" id="pauseButton">
+		<img src="src/img/musicBtn.png" alt="" class="menuBtn" id="BGMbutton">
+	</header>
+
+	<!-- cartes -->
+	<!-- note : images générées par IA -->
+	<main>
+		<!-- une carte -->
+		<div class="card" data-name="Farting Grubz">
+			<div class="card-wrapper">
+				<!-- dos de la carte -->
+				<div class="card-back">
+					<img src="src/img/grubzCardBack.png" alt="" />
+				</div>
+				<!-- avant de la carte -->
+				<div class="card-front">
+					<img src="src/img/fartingGrubz.png" alt="" />
+				</div>
+			</div>
+		</div>
+
+		<div class="card" data-name="Farting Grubz">
+			<div class="card-wrapper">
+				<div class="card-back">
+					<img src="src/img/grubzCardBack.png" alt="" />
+				</div>
+				<div class="card-front">
+					<img src="src/img/fartingGrubz.png" alt="" />
+				</div>
+			</div>
+		</div>
+
+		<div class="card" data-name="Angry Grubz">
+			<div class="card-wrapper">
+				<div class="card-back">
+					<img src="src/img/grubzCardBack.png" alt="" />
+				</div>
+				<div class="card-front">
+					<img src="src/img/angryGrubz.png" alt="" />
+				</div>
+			</div>
+		</div>
+
+		<div class="card" data-name="Angry Grubz">
+			<div class="card-wrapper">
+				<div class="card-back">
+					<img src="src/img/grubzCardBack.png" alt="" />
+				</div>
+				<div class="card-front">
+					<img src="src/img/angryGrubz.png" alt="" />
+				</div>
+			</div>
+		</div>
+
+		<div class="card" data-name="Chilling Grubz">
+			<div class="card-wrapper">
+				<div class="card-back">
+					<img src="src/img/grubzCardBack.png" alt="" />
+				</div>
+				<div class="card-front">
+					<img src="src/img/chillingGrubz.png" alt="" />
+				</div>
+			</div>
+		</div>
+
+		<div class="card" data-name="Chilling Grubz">
+			<div class="card-wrapper">
+				<div class="card-back">
+					<img src="src/img/grubzCardBack.png" alt="" />
+				</div>
+				<div class="card-front">
+					<img src="src/img/chillingGrubz.png" alt="" />
+				</div>
+			</div>
+		</div>
+
+		<div class="card" data-name="Flower Grubz">
+			<div class="card-wrapper">
+				<div class="card-back">
+					<img src="src/img/grubzCardBack.png" alt="" />
+				</div>
+				<div class="card-front">
+					<img src="src/img/flowerGrubz.png" alt="" />
+				</div>
+			</div>
+		</div>
+
+		<div class="card" data-name="Flower Grubz">
+			<div class="card-wrapper">
+				<div class="card-back">
+					<img src="src/img/grubzCardBack.png" alt="" />
+				</div>
+				<div class="card-front">
+					<img src="src/img/flowerGrubz.png" alt="" />
+				</div>
+			</div>
+		</div>
+
+		<div class="card" data-name="Hungry Grubz">
+			<div class="card-wrapper">
+				<div class="card-back">
+					<img src="src/img/grubzCardBack.png" alt="" />
+				</div>
+				<div class="card-front">
+					<img src="src/img/hungryGrubz.png" alt="" />
+				</div>
+			</div>
+		</div>
+
+		<div class="card" data-name="Hungry Grubz">
+			<div class="card-wrapper">
+				<div class="card-back">
+					<img src="src/img/grubzCardBack.png" alt="" />
+				</div>
+				<div class="card-front">
+					<img src="src/img/hungryGrubz.png" alt="" />
+				</div>
+			</div>
+		</div>
+
+		<div class="card" data-name="Just a Grubz">
+			<div class="card-wrapper">
+				<div class="card-back">
+					<img src="src/img/grubzCardBack.png" alt="" />
+				</div>
+				<div class="card-front">
+					<img src="src/img/justAGrubz.png" alt="" />
+				</div>
+			</div>
+		</div>
+
+		<div class="card" data-name="Just a Grubz">
+			<div class="card-wrapper">
+				<div class="card-back">
+					<img src="src/img/grubzCardBack.png" alt="" />
+				</div>
+				<div class="card-front">
+					<img src="src/img/justAGrubz.png" alt="" />
+				</div>
+			</div>
+		</div>
+
+		<div class="card" data-name="Panicking Grubz">
+			<div class="card-wrapper">
+				<div class="card-back">
+					<img src="src/img/grubzCardBack.png" alt="" />
+				</div>
+				<div class="card-front">
+					<img src="src/img/panickingGrubz.png" alt="" />
+				</div>
+			</div>
+		</div>
+
+		<div class="card" data-name="Panicking Grubz">
+			<div class="card-wrapper">
+				<div class="card-back">
+					<img src="src/img/grubzCardBack.png" alt="" />
+				</div>
+				<div class="card-front">
+					<img src="src/img/panickingGrubz.png" alt="" />
+				</div>
+			</div>
+		</div>
+
+		<div class="card" data-name="Waving Grubz">
+			<div class="card-wrapper">
+				<div class="card-back">
+					<img src="src/img/grubzCardBack.png" alt="" />
+				</div>
+				<div class="card-front">
+					<img src="src/img/wavingGrubz.png" alt="" />
+				</div>
+			</div>
+		</div>
+
+		<div class="card" data-name="Waving Grubz">
+			<div class="card-wrapper">
+				<div class="card-back">
+					<img src="src/img/grubzCardBack.png" alt="" />
+				</div>
+				<div class="card-front">
+					<img src="src/img/wavingGrubz.png" alt="" />
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<!-- rejouer -->
+	<footer>
+		<div class="healthMontre">
+			<div class="healthBar">
+				<div class="croissantBox">
+					<img src="src/img/croissantOmbre.png" class="croissantOmbre" alt="">
+					<img src="src/img/croissant.png" id="pv7" class="croissant" alt="">
+				</div>
+				<div class="croissantBox">
+					<img src="src/img/croissantOmbre.png" class="croissantOmbre" alt="">
+					<img src="src/img/croissant.png" id="pv6" class="croissant" alt="">
+				</div>
+				<div class="croissantBox">
+					<img src="src/img/croissantOmbre.png" class="croissantOmbre" alt="">
+					<img src="src/img/croissant.png" id="pv5" class="croissant" alt="">
+				</div>
+				<div class="croissantBox">
+					<img src="src/img/croissantOmbre.png" class="croissantOmbre" alt="">
+					<img src="src/img/croissant.png" id="pv4" class="croissant" alt="">
+				</div>
+				<div class="croissantBox">
+					<img src="src/img/croissantOmbre.png" class="croissantOmbre" alt="">
+					<img src="src/img/croissant.png" id="pv3" class="croissant" alt="">
+				</div>
+				<div class="croissantBox">
+					<img src="src/img/croissantOmbre.png" class="croissantOmbre" alt="">
+					<img src="src/img/croissant.png" id="pv2" class="croissant" alt="">
+				</div>
+				<div class="croissantBox">
+					<img src="src/img/croissantOmbre.png" class="croissantOmbre" alt="">
+					<img src="src/img/croissant.png" id="pv1" class="croissant" alt="">
+				</div>
+			</div>
+			<div id="montre">00:00</div>
+		</div>
+		<div id="card-left" class="card-info">. . . . . . . .</div>
+		<div id="card-right" class="card-info">. . . . . . . .</div>
+	</footer>
+
+	<!-- popups -->
+	<div id="startpopup">
+		<div id="startWindow">
+			Are you ready?<br />
+			<button id="playButton">PLAY</button>
+		</div>
+	</div>
+	<div id="pausepopup" class="hidden smolBlur">
+		<div id="pauseWindow">
+			Game paused
+			<img src="src/img/chillingJiji.png" alt="">
+			<button id="unpauseButton">RESUME</button>
+		</div>
+	</div>
+	<div id="winpopup" class="hidden smolBlur">
+		<div id="winWindow">
+			<!-- <br> : retour à la ligne dans un texte -->
+			<h2>YOU WON !</h2><br />
+			<p>Thanks to you, Jiji the Grubz can eat <span id="wincounter">7</span>.</p><br />
+			<p>Jiji waited <span id="winMins"></span><span id="winSecs">0</span> before he could eat.</p>
+			<img src="src/img/croissantJiji.png" alt="">
+		</div>
+	</div>
+	<div id="loosepopup" class="hidden smolBlur">
+		<div id="looseWindow">
+			<h2>YOU LOST...</h2><br />
+			<p>You only found <span id="pairs">0</span> of Grubz and lost all the croissants...</p><br />
+			<p>After waiting for <span id="looseMins"></span><span id="looseSecs">0</span>, Jiji the Grubz is now going to starve to death.</p>
+			<img src="src/img/panickingJiji.png" alt="">
+		</div>
+	</div>
+	<!--
+	<div id="bad" class="hidden">
+		<video autoplay muted loop src="src/video/penalty.mp4"></video>
+	</div>
+	-->
+
+	<!-- son de retournement des cartes -->
+	<audio id="son-retourner" src="src/sound/cartoonJump.mp3"></audio>
+	<audio id="son-gagner" src="src/sound/goodPair.mp3"></audio>
+	<audio id="son-perdu" src="src/sound/badPair.mp3"></audio>
+	<audio id="son-rejouer" src="src/sound/bubbles.mp3"></audio>
+	<audio src="src/sound/buttons.mp3" id="son-boutons"></audio>
+	<audio src="src/sound/fart.mp3" id="son-pet"></audio>
+	<audio src="src/sound/victory.mp3" id="son-victoire"></audio>
+	<audio src="src/sound/winPop.mp3" id="winpop"></audio>
+	<audio src="src/sound/defeat.mp3" id="son-defaite"></audio>
+
+	<!-- scripts -->
+	<script src="js/index.js"></script>
+</body>
+
+</html>
