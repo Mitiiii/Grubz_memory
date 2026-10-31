@@ -13,20 +13,13 @@
 body {
 	width: 100vw; /* largeur totale de l'écran */
 	height: 100vh; /* hauteur totale de l'écran */
-	overflow: hidden; /* pas de scroll */
+	/*overflow: hidden; /* pas de scroll */
 	/**/
 	display: grid; /* faire une grille */
 	grid-template-columns: 150px 1.9fr 1fr; /* 3 colonnes */
 	grid-template-rows: 1fr; /* 1 ligne */
 	gap: 15px; /* goutière */
 	background-color: rgb(173, 154, 83);
-}
-
-@media (orientation: portrait) {
-    body {
-        background: white;
-		z-index 100;
-    }
 }
 
 header {
