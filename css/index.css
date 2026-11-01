@@ -13,7 +13,7 @@
 body {
 	width: 100vw; /* largeur totale de l'écran */
 	height: 100vh; /* hauteur totale de l'écran */
-	/*overflow: hidden; /* pas de scroll */
+	overflow: hidden; /* pas de scroll */
 	/**/
 	display: grid; /* faire une grille */
 	grid-template-columns: 21vb 1.9fr 1fr; /* 3 colonnes */
@@ -68,18 +68,17 @@ button {
 }
 
 main {
-	margin: 5px 0;
 	justify-self: right;
 	align-self: center; /* centrer verticalement dans la case */
 	/**/
 	display: grid; /* faire une grille */
 	grid-template-columns: repeat(4, auto); /* 4 colonnes */
 	grid-template-rows: repeat(4, auto); /* 4 lignes */
-	gap: 10px; /* goutière */
+	gap: 1.2vmin; /* goutière */
 }
 
 .card {
-	width: 20vmin; /* largeur */
+	width: 21vmin; /* largeur */
 	aspect-ratio: 1; /* ratio d'aspect (basée sur la largeur) */
 	/**/
 	perspective: 1000px; /* effet de perspective */
@@ -178,7 +177,7 @@ footer {
 
 .croissantBox {
 	position: relative;
-	width: 10vmin;
+	width: 10.8vmin;
 	aspect-ratio: 1.15;
 }
 
@@ -206,7 +205,7 @@ footer {
 	padding: 4px 8px 1px 8px; /* marge interne (haut, droite, bas, gauche) */
 	/**/
 	font-family: Gaegu;
-	font-size: 4vmin; /* taille de typo */
+	font-size: 4.4vmin; /* taille de typo */
 	font-weight: bold; /* graisse de la typo */
 }
 
@@ -312,4 +311,24 @@ span {
 	display: block; /* la vidéo est traitée comme une boite */
 	width: 12vw;
 	margin: 3vh auto 0 auto; /* centrer horizontalement */
+}
+
+#portrait {
+	display: none;
+}
+
+@media (orientation: portrait) {
+    #portrait {
+		width: 100vw;
+		height: 100vh;
+		font-family: "Gaegu";
+		color: white;
+		position: fixed;
+        display: flex;
+		background-color: black;
+		z-index: 100;
+		flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
 }
