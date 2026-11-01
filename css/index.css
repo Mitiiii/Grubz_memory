@@ -13,7 +13,7 @@
 body {
 	width: 100vw; /* largeur totale de l'écran */
 	height: 100vh; /* hauteur totale de l'écran */
-	overflow: hidden; /* pas de scroll */
+	/*overflow: hidden; /* pas de scroll */
 	/**/
 	display: grid; /* faire une grille */
 	grid-template-columns: 21vb 1.9fr 1fr; /* 3 colonnes */
@@ -33,7 +33,7 @@ header {
 h1 {
 	text-align: center;
 	margin-bottom: 6vb;
-	font-size: 2.2vw;
+	font-size: 4.4vb;
 	font-family: Gaegu;
 	z-index: 100;
 	font-weight: bold;
@@ -68,6 +68,7 @@ button {
 }
 
 main {
+	margin: 5px 0;
 	justify-self: right;
 	align-self: center; /* centrer verticalement dans la case */
 	/**/
@@ -78,7 +79,7 @@ main {
 }
 
 .card {
-	width: 10vw; /* largeur */
+	width: 20vmin; /* largeur */
 	aspect-ratio: 1; /* ratio d'aspect (basée sur la largeur) */
 	/**/
 	perspective: 1000px; /* effet de perspective */
@@ -92,6 +93,12 @@ main {
 	transform-origin: center; /* point de pivot centré */
 	transform: scale(105%) translateY(-15px) rotate(2deg); /* triple transformation : échelle, translation en Y et rotation */
 	z-index: 99; /* metre au dessus des autres éléments */
+}
+
+@media (hover: none) {
+	.card:hover {
+	/*pas d'effets de survol*/
+	}
 }
 
 .card-wrapper {
@@ -125,7 +132,7 @@ main {
 	backface-visibility: hidden; /* envers invisible (comme en 3D) */
 	/**/
 	border: solid rgb(0, 0, 0); /* bordure en trait continu de couleur noire */
-	border-width: 0.35dvb;
+	border-width: 0.42vmin;
 	border-radius: 1.9dvb; /* bord arrondi */
 	background-color: rgb(242, 238, 193);
 	overflow: hidden; /* masquer le scroll */
@@ -153,7 +160,7 @@ footer {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding-left: 2vw;
+	padding: 2vh 0 2vh 2vw;
 }
 
 .healthMontre {
@@ -169,7 +176,7 @@ footer {
 
 .croissantBox {
 	position: relative;
-	width: 5vw;
+	width: 10vmin;
 	aspect-ratio: 1.15;
 }
 
@@ -187,7 +194,7 @@ footer {
 #montre {
 	font-family: Gaegu;
 	font-weight: bold;
-	font-size: 2.4vw;
+	font-size: 4.8vmin;
 	padding: 4px 8px 1px 8px;
 	align-self: center;
 	margin: 0 4vw;
@@ -197,7 +204,7 @@ footer {
 	padding: 4px 8px 1px 8px; /* marge interne (haut, droite, bas, gauche) */
 	/**/
 	font-family: Gaegu;
-	font-size: 2vw; /* taille de typo */
+	font-size: 4vmin; /* taille de typo */
 	font-weight: bold; /* graisse de la typo */
 }
 
