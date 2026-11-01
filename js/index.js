@@ -13,8 +13,8 @@ let secondCardVal; // nom de la seconde carte
 //
 // gestion du nombre de coup
 let wincount = 7;
-
 let lives = 8;
+
 let music = false;
 let gamePaused = false;
 let gameEnded = false;
@@ -88,20 +88,6 @@ function checkResult($cardLeft, $cardRight, $winPopUp, $loosePopUp, $winCounter,
 
 			const firstCard = $firstCard;
 			const secondCard = $secondCard;
-			/*firstCard.classList.add("hidden");
-			secondCard.classList.add("hidden");
-			for (let i = 0; i < 3; i++) {
-				setTimeout(() => {
-					firstCard.classList.add("hidden");
-					secondCard.classList.add("hidden");
-
-					setTimeout(() => {
-						firstCard.classList.remove("hidden");
-						secondCard.classList.remove("hidden");
-					}, 300);
-
-				}, i * 600);
-			}*/
 			firstCard.classList.add("pair");
 			secondCard.classList.add("pair");
 			setTimeout(() => {
@@ -109,7 +95,6 @@ function checkResult($cardLeft, $cardRight, $winPopUp, $loosePopUp, $winCounter,
 				secondCard.classList.remove("pair");
 			}, 150);
 			
-
 			if (currentPairs == maxPairs) {
 				// si on a trouvé toutes les paires
 				// toutes les cartes ont été trouvées
@@ -130,9 +115,10 @@ function checkResult($cardLeft, $cardRight, $winPopUp, $loosePopUp, $winCounter,
 					$audioWinPop.currentTime = 0;
 					$audioWinPop.play();
 					$winPopUp.classList.remove("hidden");
-				}, 2000);
+				}, 1800);
 				gameEnded = true;
 			}
+
 		} else {
 			// erreur
 			console.log("fail");
@@ -142,13 +128,6 @@ function checkResult($cardLeft, $cardRight, $winPopUp, $loosePopUp, $winCounter,
 			//
 			wincount--;
 			$winCounter.textContent = `${wincount} croissant(s)`;
-
-			//m
-			/*$badPopUp.querySelector('video').currentTime = 0;
-			$badPopUp.classList.remove("hidden");
-			setTimeout(() => {
-				$badPopUp.classList.add("hidden"); //changer le popup ou enlever tout court pceque chiant si ça apparaît à chaque mauvaise paire
-			}, 800);*/
 
 			lives--;
 			const pv = document.getElementById("pv" + lives)
@@ -178,10 +157,9 @@ function checkResult($cardLeft, $cardRight, $winPopUp, $loosePopUp, $winCounter,
 					}
 					$looseSecondes.textContent = `${secs} s`;
 					$loosePopUp.classList.remove("hidden");
-				}, 2000);
+				}, 1500);
 				gameEnded = true;
 			}
-			//m
 
 			$firstCard.classList.remove("returned"); // enlever une class à l'élément
 			$secondCard.classList.remove("returned");
@@ -222,13 +200,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	const $audioVictory = document.getElementById("son-victoire");
 	const $audioWinPop = document.getElementById("winpop");
 	const $audioDefeat = document.getElementById("son-defaite");
-
-	//m
 	const $audioBGM = document.getElementById("BGM");
-	//const $badPopUp = document.getElementById("bad");
+	//
 	const $loosePopUp = document.getElementById("loosepopup");
 	const $croissants = document.querySelectorAll(".croissant");
-	//
 	const $pairs = document.getElementById("pairs");
 	const mins = "";
 	const secs = "";
@@ -240,8 +215,20 @@ document.addEventListener("DOMContentLoaded", function () {
 	const $startPopUp = document.getElementById("startpopup");
 	const $playButton = document.getElementById("playButton");
 
+	//
+	const estTactile = window.matchMedia("(pointer: coarse)").matches;
+	//
+
+
 	$audioBGM.volume = 0.8;
-	$playButton.addEventListener("click", function () {
+	$playButton.addEventListener("click", async () => {
+		if (estTactile && !document.fullscreenElement) {
+        try {
+            await document.documentElement.requestFullscreen();
+        } catch (error) {
+            console.log("Plein écran indisponible", error);
+        }
+    }
 		$audioBtn.currentTime = 0;
 		$audioBtn.play();
 		$startPopUp.classList.add("hidden");
@@ -274,6 +261,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			startTimer();
 		}
 	});
+
 	const $unpauseButton = document.getElementById("unpauseButton");
 	$unpauseButton.addEventListener("click", function () {
 			$audioBtn.currentTime = 0;
