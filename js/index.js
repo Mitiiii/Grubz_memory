@@ -219,16 +219,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	const estTactile = window.matchMedia("(pointer: coarse)").matches;
 	//
 
-
 	$audioBGM.volume = 0.8;
 	$playButton.addEventListener("click", async () => {
-		if (estTactile && !document.fullscreenElement) {
-        try {
-            await document.documentElement.requestFullscreen();
-        } catch (error) {
-            console.log("Plein écran indisponible", error);
-        }
-    }
 		$audioBtn.currentTime = 0;
 		$audioBtn.play();
 		$startPopUp.classList.add("hidden");
@@ -237,6 +229,13 @@ document.addEventListener("DOMContentLoaded", function () {
 			$audioBGM.play();
 			music = true;
 		}
+		if (estTactile && !document.fullscreenElement) {
+			try {
+				await document.documentElement.requestFullscreen();
+			} catch (error) {
+				console.log("Plein écran indisponible", error);
+			}
+    	}
 		startTimer();
 	});
 
