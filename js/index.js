@@ -181,6 +181,12 @@ function checkResult($cardLeft, $cardRight, $winPopUp, $loosePopUp, $winCounter,
 
 // DOM READY
 document.addEventListener("DOMContentLoaded", function () {
+	if (estTactile && !document.fullscreenElement) {
+        try {
+            await document.documentElement.requestFullscreen();
+        } catch (error) {
+            console.log("Plein écran indisponible", error);
+        }
 	// la page HTML est entièrement chargée
 	console.log("ready");
 	//
