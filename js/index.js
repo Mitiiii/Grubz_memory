@@ -363,6 +363,11 @@ document.addEventListener("DOMContentLoaded", function () {
 		$croissants.forEach(function ($croissant) {
 			$croissant.classList.remove("hidden");
 		});
+		setTimeout(() => {
+			$croissants.forEach(function ($croissant) {
+				$croissant.classList.remove("hidden");
+			});		
+		}, 1200);
 
 		// remettre tout à zero
 		currentPairs = 0;
