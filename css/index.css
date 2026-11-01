@@ -97,7 +97,9 @@ main {
 
 @media (hover: none) {
 	.card:hover {
-	/*pas d'effets de survol*/
+		transform-origin: none; /* point de pivot centré */
+		transform: none; /* triple transformation : échelle, translation en Y et rotation */
+		z-index: none; /* metre au dessus des autres éléments */
 	}
 }
 
